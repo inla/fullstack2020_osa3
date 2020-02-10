@@ -2,11 +2,14 @@
   "name": "puhelinluettelo",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:ui": "rm -rf build && cd ../../fullstack2020/osa2/puhelinluettelo && npm run build --prod && cp -r build ../../../puhelinluettelo/",
+    "deploy": "git push heroku master",
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",    
+    "logs:prod": "heroku logs --tail"
   },
   "repository": {
     "type": "git",
